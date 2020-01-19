@@ -42,7 +42,7 @@ void main() {
             .thenAnswer((_) async => Right(initialTodos));
         return TodosBloc(mockTodoRepository);
       },
-      act: (bloc) => bloc.add(TodoEvent.loadTodos()),
+      act: (bloc) async => bloc.add(TodoEvent.loadTodos()),
       expect: [
         TodosState.todosNotLoaded(),
         TodosState.todosLoading(),
@@ -60,7 +60,7 @@ void main() {
         );
         return TodosBloc(mockTodoRepository);
       },
-      act: (bloc) => bloc.add(TodoEvent.loadTodos()),
+      act: (bloc) async => bloc.add(TodoEvent.loadTodos()),
       expect: [
         TodosState.todosNotLoaded(),
         TodosState.todosLoading(),

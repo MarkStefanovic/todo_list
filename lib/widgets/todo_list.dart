@@ -59,23 +59,6 @@ class TodoList extends StatelessWidget {
                           isEditing: false,
                         ),
                       );
-                      return AddEditPage(
-                        key: WidgetKeys.editTodoScreen,
-                        onSave: (description, note) {
-                          final todo = Todo(
-                            id: -1,
-                            description: description,
-                            date: DateTime.now().toString(),
-                            priority: Priority.high,
-                            complete: false,
-                            note: note,
-                          );
-                          BlocProvider.of<TodosBloc>(context)
-                              .add(TodoEvent.addTodo(todo: todo));
-                        },
-                        isEditing: true,
-                        todo: dummyTodo,
-                      );
                     },
                   ),
                 ],
@@ -87,7 +70,7 @@ class TodoList extends StatelessWidget {
                   final todo = loadedState.todos.items[index];
 
                   return Dismissible(
-                    key: WidgetKeys.todoItem(todo.id),
+                    key: WidgetKeys.todoItem(todo.id) as Key,
                     background: Container(color: Colors.red),
                     onDismissed: (direction) {
                       BlocProvider.of<TodosBloc>(context).add(
@@ -129,7 +112,7 @@ class TodoList extends StatelessWidget {
                           );
                         },
                         trailing: IconButton(
-                          key: WidgetKeys.todoItemDeleteButton(todo.id),
+                          key: WidgetKeys.todoItemDeleteButton(todo.id) as Key,
                           icon: Icon(Icons.delete),
                           onPressed: () {
                             BlocProvider.of<TodosBloc>(context).add(

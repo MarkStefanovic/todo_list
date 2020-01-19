@@ -22,7 +22,7 @@ Future<void> main() async {
     BlocProvider(
       create: (context) {
         final todoRepository = sl<TodoRepository>();
-        TodosBloc todosBloc = TodosBloc(todoRepository);
+        final TodosBloc todosBloc = TodosBloc(todoRepository);
         todosBloc.add(TodoEvent.loadTodos());
         return todosBloc;
       },
@@ -43,7 +43,7 @@ class _MyAppState extends State<MyApp> {
       title: "ToDos",
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      supportedLocales: [
+      supportedLocales: const [
         Locale("en", "US"),
       ],
       localizationsDelegates: [

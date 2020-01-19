@@ -28,12 +28,13 @@ abstract class TodoRepository {
 class TodoHiveRepository implements TodoRepository {
   final Box<Todo> box = Hive.box("todos");
 
+  @override
   Future<Either<HiveFailure, Todos>> all() async {
     debugPrint("called all()");
     try {
       if (box.isEmpty) {
         debugPrint("box is empty");
-        return Right(Todos([]));
+        return Right(Todos(const []));
       } else {
         return Right(Todos(box.values.cast<Todo>()));
       }
@@ -43,6 +44,7 @@ class TodoHiveRepository implements TodoRepository {
     }
   }
 
+  @override
   Future<Either<HiveFailure, Todo>> add(Todo todo) async {
     debugPrint("called add(todo: $todo)");
     try {
@@ -54,6 +56,7 @@ class TodoHiveRepository implements TodoRepository {
     }
   }
 
+  @override
   Future<Either<HiveFailure, Todo>> update(Todo todo) async {
     debugPrint("called update(todo: $todo)");
     try {
@@ -65,6 +68,7 @@ class TodoHiveRepository implements TodoRepository {
     }
   }
 
+  @override
   Future<Either<HiveFailure, Todo>> delete(Todo todo) async {
     debugPrint("called delete(todo: $todo)");
     try {
@@ -76,6 +80,7 @@ class TodoHiveRepository implements TodoRepository {
     }
   }
 
+  @override
   Future<Option<Todo>> get(int id) async {
     debugPrint("called get(id: $id)");
     try {
@@ -86,12 +91,18 @@ class TodoHiveRepository implements TodoRepository {
     }
   }
 
+  @override
   Future<Either<HiveFailure, Todos>> toggleAll() async {
     debugPrint("called toggleAll()");
     try {
       final todos = box.values;
       final bool allComplete = todos.every((todo) => todo.complete);
-      final bool from = allComplete ? true : false;
+      bool from;
+      if (allComplete) {
+        from = true;
+      } else {
+        from = false;
+      }
       final bool to = !from;
       todos.forEach((todo) {
         if (todo.complete == from) {
@@ -106,6 +117,7 @@ class TodoHiveRepository implements TodoRepository {
     }
   }
 
+  @override
   Future<Either<HiveFailure, Todos>> clearCompleted() async {
     debugPrint("called clearCompleted()");
     try {
@@ -121,6 +133,7 @@ class TodoHiveRepository implements TodoRepository {
     }
   }
 
+  @override
   Future<Either<HiveFailure, int>> count() async {
     debugPrint("called count()");
     try {

@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart' show Function2;
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:todo_list/localization.dart';
 import 'package:todo_list/models/models.dart';
 import 'package:todo_list/widgets/keys.dart';

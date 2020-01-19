@@ -15,14 +15,15 @@ class Todos extends Equatable {
   List<Object> get props => [items];
 
   Option<Todo> byId(int id) {
-    Todo todo = items.firstWhere(
+    final Todo todo = items.firstWhere(
       (todo) => todo.id == id,
       orElse: () => null,
     );
-    if (todo == null)
+    if (todo == null) {
       return none<Todo>();
-    else
+    } else {
       return Some(todo);
+    }
   }
 
   Todos add(Todo todo) => Todos(items + [todo]);
@@ -32,7 +33,7 @@ class Todos extends Equatable {
   Todos delete(Todo todo) => Todos(items.where((t) => t.id != todo.id));
 
   Todos toggleAll() {
-    bool allCompleted = items.every((todo) => todo.complete);
+    final bool allCompleted = items.every((todo) => todo.complete);
     return Todos(items.map((todo) => todo.copyWith(complete: !allCompleted)));
   }
 

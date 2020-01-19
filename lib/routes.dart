@@ -16,8 +16,7 @@ class RouteGenerator {
       case Routes.home:
         return MaterialPageRoute(builder: (_) => ListView());
       case Routes.addEditPage:
-        final AddEditPageArguments args = settings.arguments;
-        debugPrint("addEditPage request args = $args");
+        final args = settings.arguments as AddEditPageArguments;
         return MaterialPageRoute(builder: (context) {
           return AddEditPage(
             isEditing: args.isEditing,
@@ -35,9 +34,9 @@ class RouteGenerator {
       builder: (_) {
         return Scaffold(
           appBar: AppBar(
-            title: Text('Error'),
+            title: const Text('Error'),
           ),
-          body: Center(
+          body: const Center(
             child: Text('ERROR'),
           ),
         );

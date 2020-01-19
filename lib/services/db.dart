@@ -4,7 +4,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart' as path;
 import 'package:todo_list/models/models.dart';
 
-const CURRENT_VERSION = 20191224;
+const currentVersion = 20191224;
 
 Future<void> startHive() async {
   final dir = await path.getApplicationDocumentsDirectory();

@@ -39,7 +39,7 @@ class AppLocalizations {
   static const LocalizationsDelegate<AppLocalizations> delegate =
       _AppLocalizationsDelegate();
 
-  static Map<String, Map<String, String>> _localizedValues = {
+  final Map<String, Map<String, String>> _localizedValues = {
     'en': {
       "add_edit_save_button_text": "Save",
       "add_todo_button_tooltip": "Add a new ToDo",
@@ -58,17 +58,16 @@ class AppLocalizations {
   String translate(String key) {
     final localizations = _localizedValues[locale.languageCode];
     if (localizations == null) {
-      var msg = "There are no localizations messages for the "
+      final msg = "There are no localizations messages for the "
           "${locale.languageCode} language.";
       debugPrint(msg);
       throw UnsupportedLocale(msg);
     }
 
-    var msg = localizations[key];
+    final msg = localizations[key];
     if (msg == null) {
-      var msg = "Missing a localization message for the $key key.";
-      debugPrint(msg);
-      throw MissingLocalizationMessageError(msg);
+      final errorMessage = "Missing a localization message for the $key key.";
+      throw MissingLocalizationMessageError(errorMessage);
     } else {
       return localizations[key];
     }

@@ -12,7 +12,7 @@ class Alert extends StatelessWidget {
       child: SingleChildScrollView(
         child: Text(
           message,
-          style: TextStyle(fontSize: 25),
+          style: const TextStyle(fontSize: 25),
           textAlign: TextAlign.center,
         ),
       ),

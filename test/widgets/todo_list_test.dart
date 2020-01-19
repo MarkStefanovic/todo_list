@@ -66,8 +66,8 @@ void main() {
             ),
           ]),
         );
-        expect(find.byKey(WidgetKeys.todoItem(1)), findsOneWidget);
-        expect(find.byKey(WidgetKeys.todoItem(2)), findsOneWidget);
+        expect(find.byKey(WidgetKeys.todoItem(1) as Key), findsOneWidget);
+        expect(find.byKey(WidgetKeys.todoItem(2) as Key), findsOneWidget);
       },
     );
 
@@ -83,9 +83,9 @@ void main() {
           note: "",
         );
         await loadTodoList(tester, Todos([todo]));
-        expect(find.byKey(WidgetKeys.todoItemDeleteButton(1)), findsOneWidget);
+        expect(find.byKey(WidgetKeys.todoItemDeleteButton(1) as Key), findsOneWidget);
         expect(find.byKey(WidgetKeys.todoList), findsOneWidget);
-        await tester.tap(find.byKey(WidgetKeys.todoItemDeleteButton(1)));
+        await tester.tap(find.byKey(WidgetKeys.todoItemDeleteButton(1) as Key));
         verify(todosBloc.add(TodoEvent.deleteTodo(todo: todo))).called(1);
       },
     );

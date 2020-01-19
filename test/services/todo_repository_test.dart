@@ -67,7 +67,7 @@ void main() {
         await todoRepository.add(todo);
 
         // assert
-        Todo actual = todoBox.get(3);
+        var actual = todoBox.get(3) as Todo;
         expect(actual, todo);
       },
     );
